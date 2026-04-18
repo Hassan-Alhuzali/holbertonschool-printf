@@ -1,7 +1,7 @@
 # printf
 
 ## Description
-Write your own printf function.
+Write your own printf function that produces output according to a format string, similar to the standard printf function in C.
 
 ## Files
 | File | Description |
