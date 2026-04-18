@@ -1,7 +1,7 @@
 #include "main.h"
 
-static char buffer[1024];
-static int buffer_index;
+char buffer[1024];
+int buffer_index;
 
 void flush_buffer(void)
 {
