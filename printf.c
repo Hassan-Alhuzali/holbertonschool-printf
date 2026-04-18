@@ -25,7 +25,9 @@ int _printf(const char *format, ...)
 				count += _putchar_buffer(va_arg(args, int));
 			else if (*format == 's')
 				count += print_string(va_arg(args, char *));
-			else if (*format == 'd' || *format == 'i')
+			else if (*format == 'S')
+                count += print_string_nonprintable(va_arg(args, char *));
+            else if (*format == 'd' || *format == 'i')
 				count += print_number(va_arg(args, int));
 			else if (*format == 'u')
 				count += print_unsigned(va_arg(args,
