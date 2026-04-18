@@ -16,5 +16,6 @@ int print_string_nonprintable(char *str);
 int print_number(int n);
 int print_unsigned(unsigned int n, char *digits, int base);
 int print_binary(unsigned int n);
+int print_pointer(void *ptr);
 
 #endif /* MAIN_H */
