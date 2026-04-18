@@ -45,3 +45,16 @@ int print_number_recursive(int n)
         count += _putchar((n % 10) + '0');
 		return (count);
 }
+
+int print_binary(unsigned int n)
+{
+	int count;
+
+	count = 0;
+	if (n == 0)
+		return (_putchar('0'));
+	if (n / 2)
+		count += print_binary(n / 2);
+	count += _putchar((n % 2) + '0');
+	return (count);
+}
