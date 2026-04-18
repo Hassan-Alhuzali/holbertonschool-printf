@@ -12,6 +12,7 @@ int _putchar(char c);
 int _putchar_buffer(char c);
 void flush_buffer(void);
 int print_string(char *str);
+int print_string_nonprintable(char *str);
 int print_number(int n);
 int print_unsigned(unsigned int n, char *digits, int base);
 int print_binary(unsigned int n);
