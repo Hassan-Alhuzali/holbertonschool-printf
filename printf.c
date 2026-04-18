@@ -41,6 +41,8 @@ int _printf(const char *format, ...)
 			else if (*format == 'X')
 				count += print_unsigned(va_arg(args,
 				unsigned int), "0123456789ABCDEF", 16);
+            else if (*format == 'p')
+                count += print_pointer(va_arg(args, void *));
 			else if (*format == 'b')
 				count += print_binary(va_arg(args, unsigned int));
 			else if (*format == '%')
