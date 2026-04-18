@@ -22,10 +22,22 @@ int _printf(const char *format, ...)
 				count += print_string(va_arg(args, char *));
 			else if (*format == 'd' || *format == 'i')
 				count += print_number(va_arg(args, int));
-			else if (*format == '%')
-				count += _putchar('%');
+			else if (*format == 'u')
+				count += print_unsigned(va_arg(args, unsigned int),
+				"0123456789", 10);
+			else if (*format == 'o')
+				count += print_unsigned(va_arg(args, unsigned int),
+				"01234567", 8);
+			else if (*format == 'x')
+				count += print_unsigned(va_arg(args, unsigned int),
+				"0123456789abcdef", 16);
+			else if (*format == 'X')
+				count += print_unsigned(va_arg(args, unsigned int),
+				"0123456789ABCDEF", 16);
 			else if (*format == 'b')
 				count += print_binary(va_arg(args, unsigned int));
+			else if (*format == '%')
+				count += _putchar('%');
 			else
 			{
 				count += _putchar('%');
