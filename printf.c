@@ -1,10 +1,5 @@
 #include "main.h"
 
-/**
- * _printf - produces output according to a format
- * @format: format string containing format specifiers
- * Return: number of characters printed
- */
 int _printf(const char *format, ...)
 {
 	va_list args;
@@ -26,9 +21,11 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 				count += print_string(va_arg(args, char *));
 			else if (*format == 'd' || *format == 'i')
-				count += print_number(args);
+				count += print_number(va_arg(args, int));
 			else if (*format == '%')
 				count += _putchar('%');
+			else if (*format == 'b')
+				count += print_binary(va_arg(args, unsigned int));
 			else
 			{
 				count += _putchar('%');
