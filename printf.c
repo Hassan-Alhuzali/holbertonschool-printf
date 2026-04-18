@@ -5,6 +5,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count;
+	int flags;
 
 	count = 0;
 	buffer_index = 0;
@@ -21,6 +22,19 @@ int _printf(const char *format, ...)
 				flush_buffer();
 				return (-1);
 			}
+
+			flags = 0;
+            while (*format == '+' || *format == ' ' || *format == '#')
+            {
+                if (*format == '+')
+                    flags |= FLAG_PLUS;
+                else if (*format == ' ')
+                    flags |= FLAG_SPACE;
+                else if (*format == '#')
+                    flags |= FLAG_HASH;
+                format++;
+            }
+
 			if (*format == 'c')
 				count += _putchar_buffer(va_arg(args, int));
 			else if (*format == 's')
