@@ -1,27 +1,5 @@
 #include "main.h"
 
-char buffer[1024];
-int buffer_index;
-
-void flush_buffer(void)
-{
-	if (buffer_index > 0)
-	{
-		write(1, buffer, buffer_index);
-		buffer_index = 0;
-	}
-}
-
-int _putchar_buffer(char c)
-{
-	buffer[buffer_index++] = c;
-	if (buffer_index == 1024)
-	{
-		write(1, buffer, buffer_index);
-		buffer_index = 0;
-	}
-	return (1);
-}
 
 int _printf(const char *format, ...)
 {
