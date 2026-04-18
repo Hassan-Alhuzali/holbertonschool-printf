@@ -109,3 +109,41 @@ int print_binary(unsigned int n)
 	count += _putchar_buffer((n % 2) + '0');
 	return (count);
 }
+
+int print_pointer(void *ptr) {
+  int count = 0;
+  unsigned long addr;
+  char hex_digits[] = "0123456789abcdef";
+  char buffer[20];
+  int i = 0;
+  int j;
+
+  if (!ptr) {
+    count += _putchar_buffer('(');
+    count += _putchar_buffer('n');
+    count += _putchar_buffer('i');
+    count += _putchar_buffer('l');
+    count += _putchar_buffer(')');
+    return (count);
+  }
+
+  addr = (unsigned long)ptr;
+
+  count += _putchar_buffer('0');
+  count += _putchar_buffer('x');
+
+  if (addr == 0) {
+    count += _putchar_buffer('0');
+    return (count);
+  }
+
+  while (addr > 0) {
+    buffer[i++] = hex_digits[addr % 16];
+    addr /= 16;
+  }
+
+  for (j = i - 1; j >= 0; j--)
+    count += _putchar_buffer(buffer[j]);
+
+  return (count);
+}
