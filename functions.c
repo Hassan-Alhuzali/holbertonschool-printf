@@ -40,6 +40,31 @@ int print_string(char *str)
 	return (count);
 }
 
+int print_string_nonprintable(char *str) {
+  int count = 0;
+  char hex_digits[] = "0123456789ABCDEF";
+
+  if (!str)
+    str = "(null)";
+
+  while (*str) {
+    
+    if (*str >= 32 && *str < 127) {
+      count += _putchar_buffer(*str);
+    } else {
+      
+      count += _putchar_buffer('\\');
+      count += _putchar_buffer('x');
+      
+      count += _putchar_buffer(hex_digits[(*str >> 4) & 0x0F]);
+      
+      count += _putchar_buffer(hex_digits[*str & 0x0F]);
+    }
+    str++;
+  }
+  return (count);
+}
+
 int print_number(int n)
 {
 	int count;
