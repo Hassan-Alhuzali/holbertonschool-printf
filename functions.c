@@ -36,6 +36,19 @@ int print_number(int n)
 	return (count);
 }
 
+int print_unsigned(unsigned int n, char *digits, int base)
+{
+	int count;
+
+	count = 0;
+	if (n == 0)
+		return (_putchar('0'));
+	if (n / base)
+		count += print_unsigned(n / base, digits, base);
+	count += _putchar(digits[n % base]);
+	return (count);
+}
+
 int print_binary(unsigned int n)
 {
 	int count;
