@@ -8,6 +8,9 @@
 #define FLAG_SPACE  (1 << 1)
 #define FLAG_HASH   (1 << 2)
 
+#define LENGTH_H    (1 << 3)
+#define LENGTH_L    (1 << 4)
+
 extern char buffer[1024];
 extern int buffer_index;
 
@@ -18,6 +21,10 @@ void flush_buffer(void);
 int print_string(char *str);
 int print_string_nonprintable(char *str);
 int print_number(int n, int flags);
+int print_number_long(long n, int flags);
+int print_number_short(short n, int flags);
+int print_unsigned_long(unsigned long n, char *digits, int base, int flags);
+int print_unsigned_short(unsigned short n, char *digits, int base, int flags);
 int print_unsigned(unsigned int n, char *digits, int base, int flags);
 int print_binary(unsigned int n, int flags);
 int print_pointer(void *ptr);
