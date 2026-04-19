@@ -109,20 +109,20 @@ int print_unsigned(unsigned int n, char *digits, int base, int flags)
 
 	if ((flags & FLAG_HASH) && n != 0) 
 	{
-        if (base == 8) // %o
+        if (base == 8)
         {
         	count += _putchar_buffer('0');
           } 
-		  else if (base == 16) // %x or %X
+		  else if (base == 16)
           {
             count += _putchar_buffer('0');
-            // Check if uppercase or lowercase based on digits array
-            if (digits[10] == 'A') // Uppercase hex
+            /* Check if uppercase or lowercase based on digits array */
+            if (digits[10] == 'A')
             	count += _putchar_buffer('X');
-            else // Lowercase hex
+            else /* Lowercase hex */
             	count += _putchar_buffer('x');
           } 
-			else if (base == 2) // %b with #
+			else if (base == 2)
           {
             count += _putchar_buffer('0');
             count += _putchar_buffer('b');
@@ -139,15 +139,25 @@ int print_unsigned(unsigned int n, char *digits, int base, int flags)
         return (count);
 }
 
-int print_binary(unsigned int n)
+int print_binary(unsigned int n, int flags)
 {
 	int count;
 
 	count = 0;
-	if (n == 0)
-		return (_putchar_buffer('0'));
+
+    if ((flags & FLAG_HASH) && n != 0) 
+	{
+        count += _putchar_buffer('0');
+        count += _putchar_buffer('b');
+    }
+
+    if (n == 0)
+	{
+		count += _putchar_buffer('0');
+		return (count);
+	}
 	if (n / 2)
-		count += print_binary(n / 2);
+		count += print_binary(n / 2, 0);
 	count += _putchar_buffer((n % 2) + '0');
 	return (count);
 }
