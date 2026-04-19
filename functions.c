@@ -65,7 +65,7 @@ int print_string_nonprintable(char *str) {
   return (count);
 }
 
-int print_number(int n)
+int print_number(int n, int flags)
 {
 	int count;
 	unsigned int num;
@@ -76,12 +76,19 @@ int print_number(int n)
 		count += _putchar_buffer('-');
 		num = -n;
 	}
-	else
-		num = n;
-	if (num / 10)
-		count += print_number(num / 10);
-	count += _putchar_buffer((num % 10) + '0');
-	return (count);
+	else {
+	
+	if (flags & FLAG_PLUS)
+        count += _putchar_buffer('+');
+    else if (flags & FLAG_SPACE)
+        count += _putchar_buffer(' ');
+    num = n;
+	}
+          if (num / 10)
+            count += print_number(num / 10, 0);
+          count += _putchar_buffer((num % 10) + '0');
+          return (count);
+	
 }
 
 int print_unsigned(unsigned int n, char *digits, int base)
