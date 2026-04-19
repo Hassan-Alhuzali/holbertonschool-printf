@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 
 int _printf(const char *format, ...)
@@ -24,15 +25,22 @@ int _printf(const char *format, ...)
 			}
 
 			flags = 0;
-            while (*format == '+' || *format == ' ' || *format == '#')
+			const char *temp = format;
+            while (*temp == '+' || *temp == ' ' || *temp == '#')
+				temp++;
+
+			if (*temp && strchr("csSdiuoxXpb%", *temp))
             {
-                if (*format == '+')
-                    flags |= FLAG_PLUS;
-                else if (*format == ' ')
-                    flags |= FLAG_SPACE;
-                else if (*format == '#')
-                    flags |= FLAG_HASH;
-                format++;
+            	while (*format == '+' || *format == ' ' || *format == '#')
+				{
+                    if (*format == '+')
+                        flags |= FLAG_PLUS;
+                    else if (*format == ' ')
+                        flags |= FLAG_SPACE;
+                    else if (*format == '#')
+                        flags |= FLAG_HASH;
+                    format++;
+				}
             }
 
 			if (*format == 'c')
