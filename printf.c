@@ -19,8 +19,8 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 			{
-				flush_buffer();
-				return (-1);
+				count += _putchar_buffer('%');
+				break;
 			}
 
 			flags = 0;
