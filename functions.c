@@ -91,6 +91,16 @@ int print_number(int n, int flags)
 	
 }
 
+static int print_unsigned_recursive(unsigned int n, char *digits, int base) 
+{
+  int count = 0;
+
+  if (n / base)
+    count += print_unsigned_recursive(n / base, digits, base);
+  count += _putchar_buffer(digits[n % base]);
+  return (count);
+}
+
 int print_unsigned(unsigned int n, char *digits, int base)
 {
 	int count;
