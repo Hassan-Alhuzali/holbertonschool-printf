@@ -79,9 +79,9 @@ int print_number(int n, int flags)
 	else {
 	
 	if (flags & FLAG_PLUS)
-        count += _putchar_buffer('+');
-    else if (flags & FLAG_SPACE)
-        count += _putchar_buffer(' ');
+      count += _putchar_buffer('+');
+  else if (flags & FLAG_SPACE)
+      count += _putchar_buffer(' ');
     num = n;
 	}
           if (num / 10)
@@ -113,7 +113,7 @@ int print_unsigned(unsigned int n, char *digits, int base, int flags)
         {
         	count += _putchar_buffer('0');
           } 
-		  else if (base == 16)
+        else if (base == 16)
           {
             count += _putchar_buffer('0');
             /* Check if uppercase or lowercase based on digits array */
@@ -122,7 +122,7 @@ int print_unsigned(unsigned int n, char *digits, int base, int flags)
             else /* Lowercase hex */
             	count += _putchar_buffer('x');
           } 
-			else if (base == 2)
+        else if (base == 2)
           {
             count += _putchar_buffer('0');
             count += _putchar_buffer('b');
