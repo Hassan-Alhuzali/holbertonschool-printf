@@ -101,17 +101,42 @@ static int print_unsigned_recursive(unsigned int n, char *digits, int base)
   return (count);
 }
 
-int print_unsigned(unsigned int n, char *digits, int base)
+int print_unsigned(unsigned int n, char *digits, int base, int flags)
 {
 	int count;
 
 	count = 0;
-	if (n == 0)
-		return (_putchar_buffer('0'));
-	if (n / base)
-		count += print_unsigned(n / base, digits, base);
-	count += _putchar_buffer(digits[n % base]);
-	return (count);
+
+	if ((flags & FLAG_HASH) && n != 0) 
+	{
+        if (base == 8) // %o
+        {
+        	count += _putchar_buffer('0');
+          } 
+		  else if (base == 16) // %x or %X
+          {
+            count += _putchar_buffer('0');
+            // Check if uppercase or lowercase based on digits array
+            if (digits[10] == 'A') // Uppercase hex
+            	count += _putchar_buffer('X');
+            else // Lowercase hex
+            	count += _putchar_buffer('x');
+          } 
+			else if (base == 2) // %b with #
+          {
+            count += _putchar_buffer('0');
+            count += _putchar_buffer('b');
+          }
+        }
+
+        if (n == 0)
+		{
+        	count += _putchar_buffer('0');
+        	return (count);
+        }
+
+        count += print_unsigned_recursive(n, digits, base);
+        return (count);
 }
 
 int print_binary(unsigned int n)
